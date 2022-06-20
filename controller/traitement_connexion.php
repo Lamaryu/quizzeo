@@ -36,7 +36,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
          $_SESSION['password'] = $password;
          $_SESSION['role'] = $role;
 
-         header('Location: ../View/principal.php?success=true');
+         header('Location: ../View/index.php?success=true');
          die();
       } else {
          header('Location: ../View/connexion.php?erreur=1');

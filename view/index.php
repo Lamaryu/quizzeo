@@ -19,9 +19,9 @@ $quizz = $connexion->query($request);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="principal.php" style="padding-left: 10px;">Quizzeo</a>
+            <a class="navbar-brand" href="index.php" style="padding-left: 10px;">Quizzeo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,16 +43,18 @@ $quizz = $connexion->query($request);
                                 <a href="new_quizz.php" aria-current="page" class="nav-link active">Nouveau quizzeo</a>
                             </li>
                         <?php endif ?>
-                    <?php else : ?>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="connexion.php">Me Connecter</a>
-                        </li>
                     <?php endif ?>
                 </ul>
                 <ul class="navbar-nav ">
-                    <li class="navbar-text">
-                        <a class="nav-link active" aria-current="page" href="connexion.php" style="margin-right: 15px;">Mon profil</a>
+                    <?php if (!empty($_SESSION)) :?>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="profil.php" style="margin-right: 15px;">Mon profil</a>
                     </li>
+                    <?php else : ?>
+                    <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="connexion.php" style="margin-right: 15px;">Me Connecter</a>
+                        </li>
+                    <?php endif ?>
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -63,6 +65,16 @@ $quizz = $connexion->query($request);
     </nav>
 
     <?php
+    if (isset($_GET['deconnexion'])) {
+        if ($_GET['deconnexion'] == true) :
+            session_unset(); ?>
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
+                <strong>Vous vous etez bien deconnecté</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    <?php endif;
+    } 
+
     if (isset($_GET['success'])) :
         if ($_GET['success'] == true) : ?>
             <div class="alert alert-success" role="alert" style="margin: 0%;">
@@ -71,11 +83,6 @@ $quizz = $connexion->query($request);
             </div>
         <?php endif ?>
     <?php endif ?>
-
-    
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
 
