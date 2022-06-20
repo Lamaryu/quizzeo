@@ -90,8 +90,8 @@ session_start();
                 <div class="form-group col-md-6">
                     <label for="role">Role</label>
                     <select id="role" name="role"  class="form-control">
-                        <option value="0">Joueur</option>
-                        <option value="1">Quizzeur</option>
+                        <option value="1">Joueur</option>
+                        <option value="2">Quizzeur</option>
                     </select>
                 </div>
             </div>

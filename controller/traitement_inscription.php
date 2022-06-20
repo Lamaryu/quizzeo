@@ -41,7 +41,7 @@ if (!empty($_POST['pseudo']) && !empty($_POST['email']) && !empty($_POST['passwo
                 $_SESSION['email'] = $email;
                 $_SESSION['password'] = $password;
                 $_SESSION['role'] = $role;
-                header('Location: ../View/principal.php?success=true');
+                header('Location: ../View/index.php?success=true');
                 die();
             } else {
                 header('Location: ../View/inscription.php?reg_err=email');

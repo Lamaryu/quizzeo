@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+require_once('../controller/connexion_bdd.php');
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -18,11 +22,22 @@
             </button>
             <div class="navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <?php if (isset($_SESSION['id'])) : ?>
+                        <?php if ($_SESSION['role'] == 2) : ?>
+                            <li class="nav-item">
+                                <a href="liste_quizz.php" aria-current="page" class="nav-link active">Mes quizz</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="..." aria-current="page" class="nav-link active">Nouveau quizz</a>
+                            </li>
+                        <?php else : ?>
+                            <li class="nav-item"><a href="..." aria-current="page" class="nav-link active"></a></li>
+                        <?php endif ?>
+                    <?php else : ?>
+                        <li class="onglet"><a href="..." class="lien"></a></li>
+                    <?php endif ?>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="connexion.php">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="inscription.php">Inscription</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -32,6 +47,14 @@
             </div>
         </div>
     </nav>
+    <?php
+    if (isset($_GET['success'])) :
+        if ($_GET['success'] == true) : ?>
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
+                <strong><?= $_SESSION['pseudo'] ?> </strong> Vous êtes bien connecté.
+            </div>
+        <?php endif ?>
+    <?php endif ?>
 </body>
 
 </html>
