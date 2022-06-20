@@ -1,15 +1,16 @@
 
-let card = document.querySelector(".container");
-let couleur = ["#FFFF00","#FF0000","#00FF00","#0000FF"];
+let card = document.querySelector(".card");
+let couleur = ["#FFFF00","#FF0000","#00FF00","#00FFFF"];
 let compt = 0
 
+change()
+
 function change(){
-    document.body.style.background = couleur[compt];
+    card.style.background = couleur[compt];
     compt++
     if (compt >= 4 ){
         compt = 0
     }
 }
 
-setInterval(change(), 5000)
-setInterval(console.log("lol"), 1000)
+setInterval(change, 650)
