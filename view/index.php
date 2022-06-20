@@ -16,7 +16,7 @@ require_once('../controller/connexion_bdd.php');
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="principal.php">Quizzeo</a>
+            <a class="navbar-brand" href="principal.php" style="padding-left: 10px;">Quizzeo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,20 +25,24 @@ require_once('../controller/connexion_bdd.php');
                     <?php if (isset($_SESSION['id'])) : ?>
                         <?php if ($_SESSION['role'] == 2) : ?>
                             <li class="nav-item">
-                                <a href="liste_quizz.php" aria-current="page" class="nav-link active">Mes quizz</a>
+                                <a href="liste_quizz.php" aria-current="page" class="nav-link active">Mes quizzeo</a>
                             </li>
                             <li class="nav-item">
-                                <a href="..." aria-current="page" class="nav-link active">Nouveau quizz</a>
+                                <a href="..." aria-current="page" class="nav-link active">Nouveau quizzeo</a>
                             </li>
-                        <?php else : ?>
-                            <li class="nav-item"><a href="..." aria-current="page" class="nav-link active"></a></li>
+                        <?php elseif ($_SESSION['role'] == 3) : ?>
+                            <li class="nav-item">
+                                <a href="liste_quizz.php" aria-current="page" class="nav-link active">Tout les quizzeo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="..." aria-current="page" class="nav-link active">Nouveau quizzeo</a>
+                            </li>
                         <?php endif ?>
                     <?php else : ?>
-                        <li class="onglet"><a href="..." class="lien"></a></li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="connexion.php">Connexion</a>
+                        </li>
                     <?php endif ?>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="connexion.php">Connexion</a>
-                    </li>
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -51,10 +55,19 @@ require_once('../controller/connexion_bdd.php');
     if (isset($_GET['success'])) :
         if ($_GET['success'] == true) : ?>
             <div class="alert alert-success" role="alert" style="margin: 0%;">
-                <strong><?= $_SESSION['pseudo'] ?> </strong> Vous êtes bien connecté.
+                <strong><?= $_SESSION['pseudo'] ?></strong> Vous êtes bien connecté.
             </div>
         <?php endif ?>
     <?php endif ?>
+    <div style="padding-left: ;">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <a href="quizzeo.php" class="card-link">Card link</a>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
 </body>
 
 </html>
