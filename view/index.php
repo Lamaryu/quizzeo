@@ -106,7 +106,7 @@ $quizz = $connexion->query($request);
     </div>
 
     <div class="presentation" >
-        <div class="row row-cols-md-3 g-5">
+        <div class="row row-cols-md-3 g-5" id="conteneur">
             <?php 
             foreach($quizz as $key=>$value) :?>
                 <div class="card">
@@ -115,7 +115,7 @@ $quizz = $connexion->query($request);
                 <?php else : ?>
                     <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none;outline: none;">
                 <?php endif ?>
-                    <div class="corps card-body text-center">
+                    <div class="corps card-body text-center" id="quizz<?= $value["id"]?>">
                         <h5 class="card-title"><?= $value["titre"]?></h5>
                         <h6 class="card-subtitle mb-2 text-muted"><?= $value["difficulte"]?></h6>
                     </div>
