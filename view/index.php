@@ -6,6 +6,9 @@ require_once('../controller/connexion_bdd.php');
 
 $request = "SELECT `id`,`titre`, `difficulte`, `date_creation` FROM quizz";
 $quizz = $connexion->query($request);
+
+$iduser = $_SESSION["id"];
+
 ?>
 
 <head>
@@ -21,7 +24,9 @@ $quizz = $connexion->query($request);
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php" style="padding-left: 10px;">Quizzeo</a>
+            <div class="titre">
+                <a class="navbar-brand" href="index.php"><h3>Quizzeo</h3></a>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,17 +35,17 @@ $quizz = $connexion->query($request);
                     <?php if (isset($_SESSION['id'])) : ?>
                         <?php if ($_SESSION['role'] == 2) : ?>
                             <li class="nav-item">
-                                <a href="liste_quizz.php" aria-current="page" class="nav-link active">Mes quizzeo</a>
+                                <a href="liste_quizz.php" aria-current="page" class="nav-link active" style="margin-right: 15px">Mes quizzeo</a>
                             </li>
                             <li class="nav-item">
-                                <a href="new_quizz.php" aria-current="page" class="nav-link active">Nouveau quizzeo</a>
+                                <a href="new_quizz.php" aria-current="page" class="nav-link active" style="margin-right: 15px">Nouveau quizzeo</a>
                             </li>
                         <?php elseif ($_SESSION['role'] == 3) : ?>
                             <li class="nav-item">
-                                <a href="liste_quizz.php" aria-current="page" class="nav-link active">Tout les quizzeo</a>
+                                <a href="liste_quizz.php" aria-current="page" class="nav-link active" style="margin-right: 15px">Tout les quizzeo</a>
                             </li>
                             <li class="nav-item">
-                                <a href="new_quizz.php" aria-current="page" class="nav-link active">Nouveau quizzeo</a>
+                                <a href="new_quizz.php" aria-current="page" class="nav-link active" style="margin-right: 15px">Nouveau quizzeo</a>
                             </li>
                         <?php endif ?>
                     <?php endif ?>
@@ -56,10 +61,10 @@ $quizz = $connexion->query($request);
                         </li>
                     <?php endif ?>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit">Search</button>
-                </form>
+                <div class="d-flex">
+                    <input id="searchbar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id="trouver" class="btn btn-success">chercher</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -82,7 +87,17 @@ $quizz = $connexion->query($request);
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif ?>
+    <?php endif;
+
+    if (isset($_GET['new'])) :
+        if ($_GET['new'] == true) : ?>
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
+                <strong> Votre nouveau quizzeo a été bien enregistré </strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif ?>
     <?php endif ?>
+
 
 <!-- Modal -->
 
@@ -111,9 +126,9 @@ $quizz = $connexion->query($request);
             foreach($quizz as $key=>$value) :?>
                 <div class="card">
                 <?php if(!empty($_SESSION)) :?>
-                    <a href="quizzeo.php" style="text-decoration: none;outline: none;">
+                    <a href="quizzeo.php" style="text-decoration: none;outline: none;color: black;">
                 <?php else : ?>
-                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none;outline: none;">
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none;outline: none;color: black;">
                 <?php endif ?>
                     <div class="corps card-body text-center" id="quizz<?= $value["id"]?>">
                         <h5 class="card-title"><?= $value["titre"]?></h5>

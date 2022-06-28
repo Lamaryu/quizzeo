@@ -4,8 +4,8 @@
 }
 
 .presentation{
-    padding-left: 150px; 
-    padding-right: 100px; 
+    padding-left: 335px; 
+    padding-right: 200px; 
     padding-top: 100px;
 }
 
@@ -17,4 +17,17 @@
 .corps{
     padding-top: 20px; 
     padding-bottom: 20px
+}
+
+.titre{
+    margin-left: 50px;
+    margin-bottom: -25px;
+    margin-top: 10px;
+    margin-right: 70px;
+}
+
+.reponse{
+    padding-top: 15px;
+    padding-bottom: 5px;
+
 }
