@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
 require_once('../controller/connexion_bdd.php');
@@ -7,10 +5,19 @@ require_once('../controller/connexion_bdd.php');
 $request = "SELECT `id`,`titre`, `difficulte`, `date_creation` FROM quizz";
 $quizz = $connexion->query($request);
 
-$iduser = $_SESSION["id"];
+if (!empty($_SESSION)){
+    $iduser = $_SESSION["id"];
+}
 
+    if (isset($_GET['deconnexion'])) {
+        if ($_GET['deconnexion'] == true){
+            session_unset(); 
+        }
+    } 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,18 +76,7 @@ $iduser = $_SESSION["id"];
         </div>
     </nav>
 
-    <?php
-    if (isset($_GET['deconnexion'])) {
-        if ($_GET['deconnexion'] == true) :
-            session_unset(); ?>
-            <div class="alert alert-success" role="alert" style="margin: 0%;">
-                <strong>Vous vous etez bien deconnecté</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-    <?php endif;
-    } 
-
-    if (isset($_GET['success'])) :
+    <?php if (isset($_GET['success'])) :
         if ($_GET['success'] == true) : ?>
             <div class="alert alert-success" role="alert" style="margin: 0%;">
                 <strong><?= $_SESSION['pseudo'] ?></strong> Vous êtes bien connecté.
@@ -93,7 +89,7 @@ $iduser = $_SESSION["id"];
         if ($_GET['new'] == true) : ?>
             <div class="alert alert-success" role="alert" style="margin: 0%;">
                 <strong> Votre nouveau quizzeo a été bien enregistré </strong> 
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close d-flex justify-content-end" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif ?>
     <?php endif ?>
@@ -126,7 +122,7 @@ $iduser = $_SESSION["id"];
             foreach($quizz as $key=>$value) :?>
                 <div class="card">
                 <?php if(!empty($_SESSION)) :?>
-                    <a href="quizzeo.php" style="text-decoration: none;outline: none;color: black;">
+                    <a href="quizzeo.php?id=<?= $value["id"]?>" style="text-decoration: none;outline: none;color: black;">
                 <?php else : ?>
                     <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none;outline: none;color: black;">
                 <?php endif ?>
@@ -141,5 +137,4 @@ $iduser = $_SESSION["id"];
     </div>
     <script src="../js/index.js"></script>
 </body>
-
 </html>

@@ -8,6 +8,28 @@ $cnti = 2;
 
 $idquizz = quizz();
 
+//ajout titre et difficulte du quizz
+function quizz() {
+
+    global $connexion;
+
+    $iduser = $_SESSION["id"];
+    $titre = $_POST["titre"];
+    $difficulte = $_POST["difficulte"];
+
+    $insert = "INSERT INTO `quizz`(`id_quizzeur`,`titre`, `difficulte`, `date_creation`) VALUES (? ,? ,? ,now())";
+    $insert = $connexion->prepare($insert);
+    $insert->bind_param("iss",$iduser ,$titre, $difficulte);
+    $insert->execute();
+
+    $request= "SELECT `id` FROM `quizz` ORDER BY id DESC LIMIT 1";
+    $result = $connexion->query($request);
+    $idquizz = $result -> fetch_assoc();
+    $idquizz = $idquizz["id"];
+
+    return $idquizz;
+} 
+
 while ($i <= ((count($_POST) - 2) / 6)) {
 
 $I = 0;

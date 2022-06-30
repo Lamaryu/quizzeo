@@ -1,41 +1,18 @@
 
-var element = document.getElementById("quizz1");
-let couleur = ["#FFFF00", "#ff000a", "#00FF00", "#00FFFF",];
+let couleur = ["#FFFF00","#FF0000","#00FF00","#00FFFF"];
+let compt = 0
 
+change()
 
-chargement();
-
-function chargement() {
-
-    change()
-
-    var i = 1;
-    let compt = 0;
-
-    // while (i <= document.getElementById("conteneur").children.length) {
-    //     change(i + 3);
-    //     change(i + 2);
-    //     change(i + 1);
-    //     change(i);
-    //     i += 4;
-    // }
-
-    // for (let I = 1; I <= document.getElementById("conteneur").children.length; I++ ){
-    //     change(I);
-    //     console.log("salut");
-    // }
-
-    function change(indice) {
-        setInterval(function () {
-            // document.getElementById("quizz" + (indice)).style.backgroundColor = couleur[compt];
-            document.body.style.backgroundColor = couleur[compt];
-            compt++;
-            if (compt >= 4) {
-                compt = 0;
-            }
-        }, 1500) 
+function change(){
+    document.body.style.backgroundColor = couleur[compt];
+    compt++
+    if (compt >= 4 ){
+        compt = 0
     }
 }
+
+setInterval(change, 1300);
 
 
 let quizz = document.getElementsByClassName('card');

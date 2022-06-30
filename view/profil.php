@@ -13,7 +13,7 @@ require_once('../controller/connexion_bdd.php');
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Mon profil</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="../public/css/profil.css">
+    <link rel="stylesheet" href="../public/css/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
@@ -22,7 +22,9 @@ require_once('../controller/connexion_bdd.php');
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php" style="padding-left: 10px;">Quizzeo</a>
+            <div class="titre">
+                <a class="navbar-brand" href="index.php"><h3>Quizzeo</h3></a>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,17 +33,17 @@ require_once('../controller/connexion_bdd.php');
                     <?php if (isset($_SESSION['id'])) : ?>
                         <?php if ($_SESSION['role'] == 2) : ?>
                             <li class="nav-item">
-                                <a href="liste_quizz.php" aria-current="page" class="nav-link active">Mes quizzeo</a>
+                                <a href="liste_quizz.php" aria-current="page" class="nav-link active" style="margin-right: 15px">Mes quizzeo</a>
                             </li>
                             <li class="nav-item">
-                                <a href="new_quizz.php" aria-current="page" class="nav-link active">Nouveau quizzeo</a>
+                                <a href="new_quizz.php" aria-current="page" class="nav-link active" style="margin-right: 15px">Nouveau quizzeo</a>
                             </li>
                         <?php elseif ($_SESSION['role'] == 3) : ?>
                             <li class="nav-item">
-                                <a href="liste_quizz.php" aria-current="page" class="nav-link active">Tout les quizzeo</a>
+                                <a href="liste_quizz.php" aria-current="page" class="nav-link active" style="margin-right: 15px">Tout les quizzeo</a>
                             </li>
                             <li class="nav-item">
-                                <a href="new_quizz.php" aria-current="page" class="nav-link active">Nouveau quizzeo</a>
+                                <a href="new_quizz.php" aria-current="page" class="nav-link active" style="margin-right: 15px">Nouveau quizzeo</a>
                             </li>
                         <?php endif ?>
                     <?php endif ?>
@@ -57,10 +59,10 @@ require_once('../controller/connexion_bdd.php');
                         </li>
                     <?php endif ?>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit">Search</button>
-                </form>
+                <div class="d-flex">
+                    <input id="searchbar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id="trouver" class="btn btn-success">chercher</button>
+                </div>
             </div>
         </div>
     </nav>
