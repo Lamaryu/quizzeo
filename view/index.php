@@ -9,11 +9,11 @@ if (!empty($_SESSION)){
     $iduser = $_SESSION["id"];
 }
 
-    if (isset($_GET['deconnexion'])) {
-        if ($_GET['deconnexion'] == true){
-            session_unset(); 
-        }
-    } 
+if (isset($_GET['deconnexion'])) {
+   if ($_GET['deconnexion'] == true){
+       session_unset(); 
+    }
+} 
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +29,7 @@ if (!empty($_SESSION)){
 </head>
 
 <body>
+    <!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container-fluid">
             <div class="titre">
@@ -76,6 +77,7 @@ if (!empty($_SESSION)){
         </div>
     </nav>
 
+<!-- alerte connexion -->
     <?php if (isset($_GET['success'])) :
         if ($_GET['success'] == true) : ?>
             <div class="alert alert-success" role="alert" style="margin: 0%;">
@@ -85,6 +87,7 @@ if (!empty($_SESSION)){
         <?php endif ?>
     <?php endif;
 
+// alerte new quizz
     if (isset($_GET['new'])) :
         if ($_GET['new'] == true) : ?>
             <div class="alert alert-success" role="alert" style="margin: 0%;">
@@ -102,7 +105,7 @@ if (!empty($_SESSION)){
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Quizzeo</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -116,6 +119,7 @@ if (!empty($_SESSION)){
     </div>
     </div>
 
+<!-- quizz -->
     <div class="presentation" >
         <div class="row row-cols-md-3 g-5" id="conteneur">
             <?php 

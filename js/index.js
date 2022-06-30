@@ -1,4 +1,4 @@
-
+//simon couleur
 let couleur = ["#FFFF00","#FF0000","#00FF00","#00FFFF"];
 let compt = 0
 
@@ -14,7 +14,7 @@ function change(){
 
 setInterval(change, 1300);
 
-
+//barre de recherche
 let quizz = document.getElementsByClassName('card');
 let search = document.getElementById('trouver');
 const recherche = document.getElementById('searchbar');
@@ -24,7 +24,7 @@ search.addEventListener('click', () => {
     let input = recherche.value.toLowerCase();
 
     for (let i = 0; i < quizz.length; i++) {
-        if (quizz[i].textContent.toLowerCase().includes(input)) {
+        if (quizz[i].textContent.toLowerCase().includes(input)){
             quizz[i].style.display = "block";
         }
         else {
